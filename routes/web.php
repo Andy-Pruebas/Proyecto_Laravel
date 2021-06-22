@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,18 +17,12 @@ use App\Http\Controllers\CursoController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('cursos',[CursoController::class,'Index'])->name('cursos.index');
+Route::resource('cursos', CursoController::class);
 
-Route::get('cursos/create',[CursoController::class,'create'])->name('cursos.create');
+Route::view('nosotros', 'nosotros')->name('nosotros');
 
-Route::post('cursos',[CursoController::class,'store'])->name('cursos.store');
+Route::get('contactanos',[ContactanosController::class,'Index'])->name('contactanos.index');
 
-Route::get('cursos/{curso}',[CursoController::class,'show'])->name('cursos.show');
-
-Route::get('cursos/{curso}/edit',[CursoController::class,'edit'])->name('cursos.edit');
-
-Route::put('cursos/{curso}',[CursoController::class,'update'])->name('cursos.update');
-
-Route::delete('cursos/{curso}',[CursoController::class,'destroy'])->name('cursos.destroy');
+Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
